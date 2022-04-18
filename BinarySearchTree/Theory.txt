@@ -1,0 +1,73 @@
+** Binary Search Tree **
+
+Time complexity comparison:
+
+                Search      Insert       Delete
+Array            O(n)        O(1)         O(n)
+Array(sorted)    O(logN)     O(n)         O(n)
+Linked List      O(n)        O(1)/O(n)    O(n)
+BST(balanced)    O(logN)     O(lonN)      O(logN)     <--
+HashTable        O(1)        O(1)         O(1)
+
+
+Example of BST:
+                20
+            10      30
+          5   15  25  35
+
+******************************************************************
+Searching Operation in BST:
+        boolean search(Node root, int x){
+            if(root == null) return false;
+
+            if(root.data == x) return true;
+
+            if(x < root.data) return search(root.left, x);  // as x is smaller than root;s data, so, we go to left side of tree
+
+            return search(root.right, x); // other cases no true so means x > root's data, so, going right side of tree
+        }
+
+******************************************************************
+Inserting a Node in BST:
+    Recursive: Time = best-O(h), avg-O(logN), worst-O(n)
+               Space = O(h)
+
+          Code:
+          Node insert(Node root, int key){
+                if(root == null) return new Node(key);
+                if(x < root.data)
+                    root.left = insert(root.left, key);
+                if(x > root.data)
+                    root.right = insert(root.right, key);
+
+                return root;
+          }
+
+    Iterative: Time = best-O(h), avg-O(logN), worst-O(n)
+                   Space = O(1)
+
+         Code:
+         Node insert(Node root, int x){
+                Node newNode = new Node(key);
+                Node current = root;
+                Node parent = null;
+
+                while(current != null){
+                    parent = current;
+                    if(key < current.data)
+                        current = current.left;
+                    if(key > current.data)
+                        current = current.right;
+                }
+
+                if(parent == null) parent = newNode;
+                else if(key < parent.data)
+                    parent.left = newNode;
+                else
+                    parent.right = newNode;
+
+                return root;
+         }
+
+******************************************************************
+Delete a Node in a BST:

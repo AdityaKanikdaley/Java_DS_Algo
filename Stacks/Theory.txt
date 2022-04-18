@@ -1,0 +1,123 @@
+Implementing custom stacks.
+
+1. using linkedList
+   class Node {
+        int data;
+        Node next;
+   }
+   class myStack {
+        Node head;
+        int size;
+        public myStack() {
+            head = null;
+            size = 0;
+        }
+
+        void push(int data) {
+            Node temp = new Node(data);
+            temp. next = head;
+            head = temp;
+        }
+
+        int peek() {
+            if(head == null)
+                throw new Exception();   // we can write any message in exception
+            return head.data;
+        }
+
+        int pop() {
+            if(head == null)
+                throws new Exception();  // we can write any message in exception
+            int res = head.data;
+            head = head.next;
+            size--;
+            return res;
+        }
+
+        boolean isEmpty() {
+            return head == null;
+        }
+
+        int size() {
+            return size;
+        }
+   }
+
+*************************************************************
+
+2. using arrays
+   class myStack {
+        int a[];
+        int top;
+        int capacity;
+        public myStack(int capacity) {
+            this.capacity = capacity;
+            top = -1;
+            a = new int[capacity];
+        }
+
+        void push(int data) {
+            if(top == capacity-1)  // handling overflow
+                throw new Exception();  // we can write any message in exception
+            top++;
+            a[top] = data;
+        }
+
+        int pop() {
+            if(top == -1)   // handling underflow
+                throw new Exception();  // we can write any message in exception
+            int res = a[top];
+            top--;
+            return res;
+        }
+
+        int peek() {
+            if(top == -1)
+                throw new Exception();  // we can write any message in exception
+            return res[top];
+        }
+
+        boolean isEmpty() {
+            return top == -1;
+        }
+   }
+
+*************************************************************
+
+3. Infix, Postfix, Prefix
+              ->  (a*b)
+     Infix        Postfix    Prefix
+->   (a*b)         (ab*)     (*ab)
+ a.  (a+(b*d))    abd*+      +a*bd
+ b.  ((a+b)*c)    ab+c*      *+abc
+ c.  x*y-z/p      xy*zp/-    -*xy/zp
+
+  Other examples:
+  1. a+(b-c)*d => abc-d*+  (postfix)
+  2. a-b/c*d*e+f => abc/d*e*-f+  (postfix)
+  3. ((a+b)-c)*d => ab+c-d*  (postfix)
+
+  Steps to convert infix to postfix:
+  -traverse the infix expression:
+    (        : push to stack
+    operand  : print it
+    )        : keep pooping from stack and print till ( is found
+    operator : if: stack is empty, push
+               else:
+                   compare the top operator in stack:
+                    if: higher precedence, push
+                    else: keep popping from stack and print
+                          till lower precedence operator is found.
+
+    once the expression is finished, keep popping from stack and print.
+
+  Steps to convert postfix to infix:
+  -traverse the postfix expression:
+    operand  : push to stack
+    operator : second_op = stack.pop()
+               first_op = stack.pop()
+               evaluate:
+                    first_op operator second_op
+               push the result into stack
+
+    once the expression is finished, return stack.pop()

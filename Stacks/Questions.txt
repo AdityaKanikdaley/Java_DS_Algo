@@ -1,0 +1,239 @@
+1. Parenthesis matching problem
+   boolean isParenthesisMatching(String str) {
+        Stack<Character> s = new Stack<>();
+        for(int i=0; i<s.length; i++ {
+            char curr = str.charAt(i);
+
+            if(isOpening(curr))
+                s.push(curr);
+            else {
+                if(s.isEmpty())
+                    return false;
+                else if(!isMatching(s.peek(), curr)
+                    return false;
+                else
+                    s.pop();
+            }
+        }
+        return s.isEmpty();
+   }
+
+           boolean isOpening(char i) {
+                return c = '(' ||
+                       c = '{' ||
+                       c = '[';
+           }
+
+           boolean isMatching(char a, char b) {
+                return (a = '(' && b = ')') ||
+                       (a = '{' && b = '}') ||
+                       (a = '[' && b = ']');
+           }
+
+   O/P: for s = "(({}))" -> true
+            s = "))((" -> false
+            s = "[()]]" -> false
+            s = "{((()))]" -> false
+
+*************************************************************
+
+2. Previous smaller element
+   void previousSmallerElement(int a[]) {
+         Stack<Integer> s = new Stack<>(); // can also use Deque<Integer> s = new ArrayDeque<>();
+         for(int i=0; i<a.length; i++) {
+
+            while(!s.isEmpty() && s.peek() >= a[i])
+                s.pop();
+
+            if(s.isEmpty())
+                print(-1);
+            else
+                print(s.peek())
+
+            s.push(a[i]);
+         }
+   }
+
+   O/P: for a = [4, 10, 5, 18, 3, 12, 7]
+       answer = [-1, 4, 4, 5, -1, 3, 3]
+
+  if we modify the condition of while loop(!s.isEmpty() && s.peek() <= a[i]),
+  we can solve the question- previous greater element.
+
+*************************************************************
+
+3. Next smaller element
+   class nextSmallerElement(int[] a) {
+        int[] answer = new int[a.length];
+        Stack<Integer> s = new Stack<>();
+        for(int i = a.length-1; i>=0; i--){
+
+            while (!s.isEmpty() && s.peek() >= a[i])
+                s.pop();
+
+            if(s.isEmpty())
+                answer[i] = -1;
+            else
+                answer[i] = s.peek();
+
+            s.push(a[i]);
+        }
+        System.out.println(Arrays.toString(answer));
+   }
+
+   O/P: for a = [3, 10, 5, 1, 15, 10, 7, 6]
+       answer = [1, 5, 1, -1, 10, 7, 6, -1]
+
+   if we modify the condition of while loop(!s.isEmpty() && s.peek()<=a[i]),
+   we can solve the question- next greater element.
+
+*************************************************************
+
+4. Find max area in a Histogram
+   int maxArea(int a[]) {
+        int maxAns = 0;
+        int pS[] = prevSmaller(a);
+        int nS[] = nextSmaller(a);
+
+        for(int i=0; i<a.length; i++) {
+            int curr = (nS[i] - pS[i] - 1) * a[i];
+            maxAnd = Math.max(maxAns, curr);
+        }
+        return maxAns;
+   }
+
+           int[] prevSmaller(int a[]) {
+                int pS[] = new int[a.length];
+                Stack<Integer> s = new Stack<>();
+                for(int i=0; i<a.length; i++) {
+                    while(!s.isEmpty() && a[s.peek()] >= a[i])
+                        s.pop();
+                    if(s.isEmpty())
+                        pS[i] = -1;
+                    else
+                        pS[i] = s.peek();
+                    s.push(i);
+                }
+                return pS;
+           }
+
+           int[] nextSmaller(int a[]) {
+                   int nS[] = new int[a.length];
+                   Stack<Integer> s = new Stack<>();
+                   for(int i=a.length-1; i>=0; i--) {
+                       while(!s.isEmpty() && a[s.peek()] <= a[i])
+                           s.pop();
+                       if(s.isEmpty())
+                           nS[i] = a.length;
+                       else
+                           nS[i] = s.peek();
+                       s.push(i);
+                   }
+                   return nS;
+              }
+
+      O/P for a = [4, 2, 1, 5, 6, 3, 2, 4, 2]
+             pS = [-1, -1, -1, 2, 3, 2, 2, 6, 2]
+             nS = [1, 2, 9, 5, 5, 6, 9, 8, 9]
+         answer = 12
+
+         for a = [3, 1, 2, 4]
+            pS = [-1, -1, 1, 2]
+            nS = [1, 4, 4, 4]
+        answer = 4
+
+*************************************************************
+
+5. Largest area sub-matrix with all 1's
+   int largestArea(int[][] a) {
+        int curRow[] = a[0];
+        int maxAns = maxHistogram(curRow);
+        for(int i=1; i<a.length; i++) {
+            for(int j=0; j<a[0].length; j++) {
+                if(a[i][j] == 1)
+                    curRow[j] += 1;
+                else
+                    curRow[j] = 0;
+            }
+
+            int curAns = maxHistogram(curRow);
+            maxAns = Math.max(maxAns, curAns);
+        }
+
+        return maxAns;
+   }
+
+           int maxHistogram(int a[]) {
+                   int maxAns = 0;
+                   int pS[] = prevSmaller(a);
+                   int nS[] = nextSmaller(a);
+
+                   for(int i=0; i<a.length; i++) {
+                       int curr = (nS[i] - pS[i] - 1) * a[i];
+                       maxAnd = Math.max(maxAns, curr);
+                   }
+                   return maxAns;
+           }
+
+                  int[] prevSmaller(int a[]) {
+                       int pS[] = new int[a.length];
+                       Stack<Integer> s = new Stack<>();
+                       for(int i=0; i<a.length; i++) {
+                           while(!s.isEmpty() && a[s.peek()] >= a[i])
+                               s.pop();
+                           if(s.isEmpty())
+                               pS[i] = -1;
+                           else
+                               pS[i] = s.peek();
+                           s.push(i);
+                       }
+                       return pS;
+                  }
+
+                  int[] nextSmaller(int a[]) {
+                          int nS[] = new int[a.length];
+                          Stack<Integer> s = new Stack<>();
+                          for(int i=a.length-1; i>=0; i--) {
+                              while(!s.isEmpty() && a[s.peek()] <= a[i])
+                                  s.pop();
+                              if(s.isEmpty())
+                                  nS[i] = a.length;
+                              else
+                                  nS[i] = s.peek();
+                              s.push(i);
+                          }
+                          return nS;
+                     }
+
+   O/P:  for a[][] = 1 1 0 1 1
+                     1 1 1 1 1
+                     0 1 1 1 1
+                     1 1 1 1 1
+                     1 0 1 1 1
+                     1 1 1 1 1
+            answer = 15 by {
+                            1 1 1
+                            1 1 1
+                            1 1 1
+                            1 1 1
+                            1 1 1
+                           }
+
+         for a[][] = 0 1 1 1 1 0
+                     1 1 1 1 0 1
+                     1 1 0 1 1 1
+                     1 1 1 1 1 0
+             answer = 6  by {
+                              1 1 1
+                              1 1 1
+                            }
+                            OR
+                            {
+                              1 1
+                              1 1
+                              1 1
+                            }
+
+*************************************************************
+
+6.

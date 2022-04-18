@@ -1,0 +1,295 @@
+in a binary tree,
+    left child = 2*i
+    right child = 2*i+1
+    parent = left child / 2 or right child / 2
+
+for a binary tree-    2
+                   4     1
+                 7     8   3
+
+(LNR)      Inorder = Left -> Node -> Right = 7, 4, 2, 8, 1, 3
+(NLR)     Preorder = Node -> Left -> Right = 2, 4, 7, 1, 8, 3
+(LRN)    PostOrder = Left -> Right -> Node = 7, 4, 8, 3, 1, 2
+
+**********************************************************************************
+Height of a binary tree:
+    int height(Node root){
+        if(root == null) return 0;  // base case
+        return Math.max(height(root.left),
+                        height(root.right)) + 1;      // +1 is to add height of root node
+    }
+
+**********************************************************************************
+Size of a binary tree:
+    int size(Node root){
+        if(root == null) return 0; // base condition
+        return size(root.left) + size(root.right) + 1    // +1 is to add size of root node
+    }
+
+**********************************************************************************
+Maximum in a binary tree:
+    int maximum(Node root){
+        if(root == null) return Integer.MIN_VALUE;
+        return Math.max(
+                    root.data,    // current value i.e. root's data
+                    Math.max(
+                         maximum(root.left),   // traversing left
+                         maximum(root.right)   // traversing right
+                         )
+                    )
+    }
+
+    Space-Comp= O(h), h: height of tree,
+    Time-Comp=O(n) as we are traversing each node once
+
+
+**********************************************************************************
+Level-order traversal in a binary tree: Using Queue DS
+
+             Tree:
+                            5
+                        1       7
+                     2     4
+                         3   6
+
+--> Print in one line:
+        void printLOrder(Node root){
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            Node curr = q.poll();
+            print(curr.data);
+
+            if(curr.left != null)
+                q.add(curr.left);
+
+            if(curr.right != null)
+                q.add(curr.right);
+        }
+    }
+    Output: 5 1 7 2 4 3 6
+
+--> Print level-wise:
+    void printLOrder(Node root){
+            Queue<Node> q = new LinkedList<>();
+            q.add(root);
+            q.add(null);                    // add null at back of queue
+            while(!q.isEmpty()){
+                Node curr = q.poll();
+                if(curr == null){
+                    if(q.isEmpty())
+                        return;
+                    q.add(null);            // add null at back of queue
+                    println();              // go to next line
+                    continue;
+                }
+                print(curr.data);
+
+                if(curr.left != null)
+                    q.add(curr.left);
+
+                if(curr.right != null)
+                    q.add(curr.right);
+            }
+        }
+        Output: 5
+                1 7
+                2 4
+                3 6
+
+
+**********************************************************************************
+Left view/ Right view of a binary tree
+
+        Tree:              levels
+                4          0
+            3       5      1
+         2     1           2
+             6   7         3
+
+             left view : 4 3 2 6
+             right view: 4 5 1 7
+
+
+        Tree:                  levels
+                4              0
+            7       6          1
+                       2       2
+                     5   1     3
+                       3       4
+
+        We code this from level order traversal.
+
+********************
+
+   Code: --LEFT
+       void printLeftView(Node root){
+            ArrayList<Node> list = new ArrayList<>();
+            printLeftView_Util(root, list, 0);
+
+            for(Node curr: list)
+                print(curr.data + " ");
+       }
+
+       void printLeftView_Util(Node root, ArrayList list, int level){
+            if(root == null) return;       //base condition
+
+            if(list.get(level) == null)
+                list.add(root);
+
+            // we do here preOrder traversal - NLR
+            printLeftView_Util(root.left, list, level+1);
+            printLeftView_Util(root.right, list, level+1);
+       }
+       O/P = 4 7 2 5 3
+
+********************
+
+   Code: --RIGHT  --method 1
+      void printLeftView(Node root){
+           ArrayList<Node> list = new ArrayList<>();
+           printLeftView_Util(root, list, 0);
+
+           for(Node curr: list)
+               print(curr.data + " ");
+      }
+
+      void printLeftView_Util(Node root, ArrayList list, int level){
+           if(root == null) return;       //base condition
+
+           if(list.get(level) == null)
+               list.add(root);
+
+           // we do here reverse-preOrder traversal - NRL
+           printLeftView_Util(root.right, list, level+1);
+           printLeftView_Util(root.left, list, level+1);
+      }
+      O/P = 4 6 2 1 3
+
+********************
+
+  Code: --RIGHT  --method 2
+        void printLeftView(Node root){
+             ArrayList<Node> list = new ArrayList<>();
+             printLeftView_Util(root, list, 0);
+
+             for(Node curr: list)
+                 print(curr.data + " ");
+        }
+
+        void printLeftView_Util(Node root, ArrayList list, int level){
+             if(root == null) return;       //base condition
+
+             list.set(level, root);
+
+             // we do here preOrder traversal - NLR
+             printLeftView_Util(root.left, list, level+1);
+             printLeftView_Util(root.right, list, level+1);
+        }
+        O/P = 4 6 2 1 3
+
+
+**********************************************************************************
+Top view/ Bottom view of a binary tree
+
+        Tree:
+                5
+           2         3
+       4       1 7       6
+
+       Top: 4 2 5 3 6
+    Bottom: 4 2 7 3 6          // among 1,7 put te one present later in LR
+
+        Tree:
+                4
+            3       2
+                1
+            5
+                6
+
+       Top: 3 4 2
+    Bottom: 5 6 2
+
+        Tree:
+                7
+            8       3
+                2
+                    4
+                        6
+                    1       5
+
+       Top: 8 7 3 6 5
+    Bottom: 8 2 1 6 5
+
+********************
+
+    Code: Top
+    void printTopView(Node root){
+        Map<Integer, Node> map = new Map<>();
+        topView(root, map, 0);
+        print(map);
+    }
+    void topView(Node root, Map<Integer, Node> map, int step){
+        if(root == null) return;   //base condition
+
+        map.putIfAbsent(step, root);
+        topView(root.left, map, step-1);
+        tepView(root.right, map, step+1);
+    }
+
+********************
+
+    Code: Right
+        void printTopView(Node root){
+            Map<Integer, Node> map = new Map<>();
+            topView(root, map, 0);
+            print(map);
+        }
+        void topView(Node root, Map<Integer, Node> map, int step){
+            if(root == null) return;   //base condition
+
+            map.put(step, root);
+            topView(root.left, map, step-1);
+            tepView(root.right, map, step+1);
+        }
+
+********************
+
+Explanation: Top
+    in top, we put only if that step's value in map is absent,
+    if not absent then we ignore
+                Tree:                     (on moving left do step-1)
+                        7                 (on moving right do step+1)
+                    8       3
+                        2
+                            4
+                                6
+                            1       5
+
+                    <------steps----->
+ steps-            -1   0   1   2   3
+ values-            8   7   3   6   5
+
+                   = 8   7   3   6   5
+
+Explanation: Bottom
+ in bottom, we put that step's value in map, if it's already present,
+ we override previous value.
+                 Tree:                     (on moving left do step-1)
+                         7                 (on moving right do step+1)
+                     8       3
+                         2
+                             4
+                                 6
+                             1       5
+
+                     <------steps----->
+  steps-            -1   0   1   2   3
+  values-            8   7   3   6   5
+                         2
+                             4
+                             1
+
+                   = 8   2   1   6   5
+
+*******************************************************************
