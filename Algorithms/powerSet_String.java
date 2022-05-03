@@ -1,5 +1,3 @@
-package apniKaksha.Algorithms.Strings;
-
 // power set includes all possible pairs of chars in given string
 // ex: abc = {"", a, b, c, ab, ac, bc, abc}
 

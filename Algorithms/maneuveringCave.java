@@ -1,5 +1,3 @@
-package apniKaksha.Algorithms;
-
 // MATRIX PATHS
 
 // to count all the possible paths from top-left to bottom-right of a NxM matrix

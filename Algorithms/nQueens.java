@@ -1,5 +1,3 @@
-package apniKaksha.Algorithms.Backtracking;
-
 // refer for ALL POSSIBLE SOLUTIONS OF nQUEENS: https://java.achchuthan.org/2012/02/n-queens-problem-in-java.html
 // refer for ALL POSSIBLE SOLUTIONS OF nQUEENS: https://pencilprogrammer.com/algorithms/n-queen-problem/
 // refer for ALL POSSIBLE SOLUTIONS OF nQUEENS: https://www.youtube.com/watch?v=bRs6E_SL2Tk

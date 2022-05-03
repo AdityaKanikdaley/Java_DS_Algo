@@ -1,5 +1,3 @@
-package apniKaksha.Algorithms;
-
 import java.util.Arrays;
 
 public class sieveOfEratosthenes {

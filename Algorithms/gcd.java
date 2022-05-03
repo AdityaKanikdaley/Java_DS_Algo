@@ -1,11 +1,10 @@
-package apniKaksha.Algorithms;
-
 // EUCLID GCD
 
 /*
 formula of GCD = GCD(a, b) = GCD(a-b, b) , a>b
            GCD(a, b) = GCD(b, a%b), till a%b != 0
 */
+
 public class gcd {
     public static void main(String[] args) {
         System.out.println(e_gcd(24, 60));

@@ -1,5 +1,3 @@
-package apniKaksha.Algorithms;
-
 /*
 formula: (a+b) % n = (a%n + b%n) % n
          (a*b) % n = (a%n * b%n) % n

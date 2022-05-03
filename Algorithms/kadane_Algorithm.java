@@ -1,5 +1,3 @@
-package apniKaksha.Algorithms.Arrays;
-
 // Kadane's algorithm : find the largest sum in contiguous subArray
 
 class kadane_Algorithm {
