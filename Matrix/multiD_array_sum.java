@@ -44,5 +44,7 @@ public class multiD_array_sum {
             }
             System.out.println();
         }
+
+        scanner.close();
     }
 }

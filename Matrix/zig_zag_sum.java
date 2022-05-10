@@ -23,5 +23,7 @@ public class zig_zag_sum {
             sum = sum + arr[i][j];
         }
         System.out.println("Sum of Zig-Zag pattern is: " + sum);
+
+        sc.close();
     }
 }
