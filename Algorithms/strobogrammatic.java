@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // refer: https://github.com/awangdev/LintCode/blob/master/Java/Strobogrammatic%20Number%20II.java
-public class strobogrammatic {
+public class Strobogrammatic {
     static List<String> singleDigitList = new ArrayList<>(Arrays.asList("0", "1", "8"));
     static char[][] digitPair = {{'0', '0'}, {'1', '1'}, {'8', '8'}, {'6', '9'}, {'9', '6'}};
 

@@ -1,7 +1,7 @@
 // power set includes all possible pairs of chars in given string
 // ex: abc = {"", a, b, c, ab, ac, bc, abc}
 
-public class powerSet_String {
+public class PowerSetString {
     public static void main(String[] args) {
 
         String s = "abc";

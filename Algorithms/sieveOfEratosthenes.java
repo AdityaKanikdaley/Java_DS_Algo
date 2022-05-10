@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class sieveOfEratosthenes {
+public class SieveOfEratosthenes {
     public static void main(String[] args) {
 
         int n = 20; // tell primes till 20

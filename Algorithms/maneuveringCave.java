@@ -5,7 +5,7 @@
 
 // f(m, n) = it can be divided into 2 sub-problems = f(m-1, n) + f(m, n-1) in solving the cave
 
-public class maneuveringCave {
+public class ManeuveringCave {
     public static void main(String[] args) {
         System.out.println(numberOfPaths(3, 3));
     }

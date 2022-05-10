@@ -1,6 +1,6 @@
 // Kadane's algorithm : find the largest sum in contiguous subArray
 
-class kadane_Algorithm {
+class KadaneAlgorithm {
 
     // this approach handles when all elements in array are negative
     static int maxSubArraySum(int[] a, int size)

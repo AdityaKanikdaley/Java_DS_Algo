@@ -1,4 +1,4 @@
-public class stock_buy_sell {
+public class StockBuySell {
     public static void main(String[] args) {
 
     }

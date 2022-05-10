@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //apna college approach for printing ALL POSSIBLE SOLUTIONS OF nQUEENS
-public  class nQueens {
+public  class NQueens {
 
     public static boolean isSafe(int row, int col, char[][] board){
 

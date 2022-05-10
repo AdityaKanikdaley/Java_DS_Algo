@@ -1,4 +1,4 @@
-public class permutation_String {
+public class PermutationString {
     public static void main(String[] args) {
         String s = "abc";
         permute(s, 0, s.length());

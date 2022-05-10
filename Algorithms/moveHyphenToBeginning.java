@@ -1,4 +1,4 @@
-public class moveHyphenToBeginning {
+public class MoveHyphenToBeginning {
     public static void main(String[] args) {
         String str = "Aditya_Is_Very_Good";
         char[] s = str.toCharArray();

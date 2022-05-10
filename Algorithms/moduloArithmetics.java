@@ -2,7 +2,7 @@
 formula: (a+b) % n = (a%n + b%n) % n
          (a*b) % n = (a%n * b%n) % n
 */
-public class moduloArithmetics {
+public class ModuloArithmetics {
     public static void main(String[] args) {
         System.out.println(fastPower(3978432, 5, 1000000007));
     }

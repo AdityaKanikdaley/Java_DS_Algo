@@ -1,6 +1,6 @@
 // formula: f(n, k) = (f(n-1, k) + k-1) % n+1
 
-public class josephusProblem {
+public class JosephusTrap {
     public static void main(String[] args) {
         int n = 5, k = 3;
         System.out.println(josephus(n, k));

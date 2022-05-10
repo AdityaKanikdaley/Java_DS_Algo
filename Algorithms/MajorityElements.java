@@ -2,7 +2,7 @@
 // uses algorithm: Boyer-Moore majority vote algorithm
 // using this algorithm: time com = O(n) & space com = O(1)
 
-public class majority_Elements {
+public class MajorityElements {
     
     // method 1 Boyer-Moore Voting Algorithm - 1: tc= O(n), sc= O(1)
     public static void main(String[] args) {
