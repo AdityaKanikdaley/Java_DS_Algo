@@ -1,4 +1,4 @@
-package apniKaksha.Matrix;
+// package Matrix;
 
 import java.util.Scanner;
 
