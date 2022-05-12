@@ -1,3 +1,5 @@
+package DynamicProgramming;
+
 // Kadane's algorithm : find the largest sum in contiguous subArray
 
 class KadaneAlgorithm {

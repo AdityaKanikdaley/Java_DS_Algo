@@ -1,14 +1,23 @@
+package Backtracking;
+import java.util.LinkedList;
+import java.util.List;
+
 public class PermutationString {
+
+    static List<String> permutations = new LinkedList<>();
+
     public static void main(String[] args) {
         String s = "abc";
         permute(s, 0, s.length());
+        System.out.println("No. of permutations: " + permutations.size());
+        System.out.println("Permutations: " + permutations);
     }
 
     private static void permute(String s, int l, int r) {
 
         // base condition
         if (l == r) {
-            System.out.print(s + " ");
+            permutations.add(s);
             return;
         }
 

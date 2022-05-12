@@ -1,3 +1,4 @@
+package Greedy;
 import java.util.*;
 
 // this approach does not work with -ve values
@@ -10,7 +11,7 @@ class Activity {
     }
 }
 
-class solution {
+public class ActivitySelection {
     static void printMaxActivities(Activity arr[], int n) {
 
         Arrays.sort(arr, new Comparator<Activity>() {

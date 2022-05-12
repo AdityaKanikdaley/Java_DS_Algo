@@ -1,3 +1,4 @@
+package Greedy;
 import java.util.*;
 
 // Time complexity : O(nlog(n))
@@ -14,7 +15,7 @@ class Job {
     }
 }
 
-class JobSequencing {
+public class JobSequencing {
     
     static void printJobScheduling(ArrayList<Job> arr) {
         int n = arr.size();
