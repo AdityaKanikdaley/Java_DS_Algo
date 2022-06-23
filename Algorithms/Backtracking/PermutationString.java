@@ -2,6 +2,7 @@ package Backtracking;
 import java.util.LinkedList;
 import java.util.List;
 
+// Picture of working: https://i.ytimg.com/vi/GuTPwotSdYw/maxresdefault.jpg
 public class PermutationString {
 
     static List<String> permutations = new LinkedList<>();

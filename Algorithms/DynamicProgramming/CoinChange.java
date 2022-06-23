@@ -1,6 +1,7 @@
 package DynamicProgramming;
 // import java.util.Arrays;
 
+/*
 public class CoinChange {
 
     // Top Down approach: 1D array: tc= O(coins*amount), sc= O(n)
@@ -29,11 +30,11 @@ public class CoinChange {
         for(int k=0;k<=amount;k++) System.out.print(dp[k]+" ");        
     }
 }
+*/
 
 
+import java.util.Arrays;
 
-
-/*
 public class CoinChange {
 
     // refer: https://www.youtube.com/watch?v=ZI17bgz07EE
@@ -72,4 +73,3 @@ public class CoinChange {
             System.out.println(Arrays.toString(cur));
     }
 }
-*/

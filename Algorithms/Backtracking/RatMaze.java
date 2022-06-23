@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 // refer: https://www.youtube.com/watch?v=bLGZhJlt4y0&list=PLgUwDviBIf0rQ6cnlaHRMuOp4H_D-7hwP&index=12
 
-// method - 1: good approach but lengthy to write. But works with all test cases
+// method - 1: good approach but lengthy to write, but works with all test cases
 public class RatMaze {
     
     public static void main(String[] args) {
         
-        int matrix[][] = {  { 1, 0, 0, 0, 0 },
+        int[][] matrix = {  { 1, 0, 0, 0, 0 },
                             { 1, 1, 1, 1, 1 },
                             { 1, 1, 1, 0, 1 },
                             { 0, 0, 0, 0, 1 },
@@ -82,7 +82,7 @@ public class RatMaze {
     }
 }
 
-// method - 2: good approach but dosen't work for all cases on GFG
+// method - 2: good approach but doesn't work for all cases on GFG
 /*
 import java.util.ArrayList;
 import java.util.Arrays;
