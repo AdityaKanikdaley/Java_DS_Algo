@@ -19,8 +19,10 @@ public class DFS {
 
     public static ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         ArrayList<Integer> storeDfs = new ArrayList<>();
-        boolean[] vis = new boolean[V];
 
+        // here we are considering 0 based indexing for graph. So we make visited[V] not visited[V+1]
+        boolean[] vis = new boolean[V];
+        // as it's 0 based indexing, we go from 0 to <V not 1 to <= V
         for(int i=0; i<V; i++)
             if(!vis[i])
                 dfs(i, vis, adj, storeDfs);

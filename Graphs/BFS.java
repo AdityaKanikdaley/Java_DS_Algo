@@ -12,10 +12,11 @@ import java.util.Queue;
 public class BFS {
     public static ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         ArrayList<Integer> bfs = new ArrayList<>();
+
+        // here we are considering 0 based indexing for graph. So we make visited[V] not visited[V+1]
         boolean[] vis = new boolean[V];
-
+        // as it's 0 based indexing, we go from 0 to <V not 1 to <= V
         for (int i = 0; i < V; i++) {
-
             if (!vis[i]) {
                 Queue<Integer> q = new LinkedList<>();
                 q.add(i);

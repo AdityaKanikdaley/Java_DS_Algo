@@ -20,8 +20,12 @@ public class CycleDetection_BFS_Undirected {
         }
     }
     public static boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
-        boolean[] vis = new boolean[V];
-        Arrays.fill(vis, false);
+
+        // here we are considering 0 based indexing for graph. So we make visited[V] not visited[V+1]
+        boolean[] vis = new boolean[V]; // in java by-default all are false at initialization
+//        Arrays.fill(vis, false);
+
+        // as it's 0 based indexing, we go from 0 to <V not 1 to <= V
         for (int i = 0; i < V; i++)
             if (!vis[i])
                 if (checkForCycle(adj, i, vis))
@@ -44,7 +48,8 @@ public class CycleDetection_BFS_Undirected {
                 if (!vis[it]) {
                     q.add(new Node(it, node));
                     vis[it] = true;
-                } else if (prev != it) return true;
+                } else if (prev != it)
+                    return true;
             }
         }
 
