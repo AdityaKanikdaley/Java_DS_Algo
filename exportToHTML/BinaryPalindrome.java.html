@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>BinaryPalindrome.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #d19a66;}
+.s3 { color: #89ca78;}
+.ln { color: #495162; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+BinaryPalindrome.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">public class </span><span class="s1">BinaryPalindrome {</span>
+<a name="l2"><span class="ln">2    </span></a>    <span class="s0">public static void </span><span class="s1">main(String[] args) {</span>
+<a name="l3"><span class="ln">3    </span></a>        <span class="s0">int </span><span class="s1">num = </span><span class="s2">5</span><span class="s1">;</span>
+<a name="l4"><span class="ln">4    </span></a>        <span class="s1">StringBuilder str = </span><span class="s0">new </span><span class="s1">StringBuilder(Integer.toBinaryString(num));</span>
+<a name="l5"><span class="ln">5    </span></a>        <span class="s1">StringBuilder rev = </span><span class="s0">new </span><span class="s1">StringBuilder(str).reverse();</span>
+<a name="l6"><span class="ln">6    </span></a>
+<a name="l7"><span class="ln">7    </span></a>        <span class="s0">if</span><span class="s1">(str.toString().equals(rev.toString()))</span>
+<a name="l8"><span class="ln">8    </span></a>            <span class="s1">System.out.println(</span><span class="s3">&quot;Yes&quot;</span><span class="s1">);</span>
+<a name="l9"><span class="ln">9    </span></a>        <span class="s0">else    </span>
+<a name="l10"><span class="ln">10   </span></a>            <span class="s1">System.out.println(</span><span class="s3">&quot;No&quot;</span><span class="s1">);</span>
+<a name="l11"><span class="ln">11   </span></a>    <span class="s1">}</span>
+<a name="l12"><span class="ln">12   </span></a><span class="s1">}</span></pre>
+</body>
+</html>

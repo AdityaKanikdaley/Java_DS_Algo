@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>PermutationString.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #5c6370; font-style: italic;}
+.s3 { color: #89ca78;}
+.s4 { color: #d19a66;}
+.ln { color: #495162; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PermutationString.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">Backtracking;</span>
+<a name="l2"><span class="ln">2    </span></a><span class="s0">import </span><span class="s1">java.util.LinkedList;</span>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">java.util.List;</span>
+<a name="l4"><span class="ln">4    </span></a>
+<a name="l5"><span class="ln">5    </span></a><span class="s2">// Picture of working: https://i.ytimg.com/vi/GuTPwotSdYw/maxresdefault.jpg</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">public class </span><span class="s1">PermutationString {</span>
+<a name="l7"><span class="ln">7    </span></a>
+<a name="l8"><span class="ln">8    </span></a>    <span class="s0">static </span><span class="s1">List&lt;String&gt; permutations = </span><span class="s0">new </span><span class="s1">LinkedList&lt;&gt;();</span>
+<a name="l9"><span class="ln">9    </span></a>
+<a name="l10"><span class="ln">10   </span></a>    <span class="s0">public static void </span><span class="s1">main(String[] args) {</span>
+<a name="l11"><span class="ln">11   </span></a>        <span class="s1">String s = </span><span class="s3">&quot;abc&quot;</span><span class="s1">;</span>
+<a name="l12"><span class="ln">12   </span></a>        <span class="s1">permute(s, </span><span class="s4">0</span><span class="s1">, s.length());</span>
+<a name="l13"><span class="ln">13   </span></a>        <span class="s1">System.out.println(</span><span class="s3">&quot;No. of permutations: &quot; </span><span class="s1">+ permutations.size());</span>
+<a name="l14"><span class="ln">14   </span></a>        <span class="s1">System.out.println(</span><span class="s3">&quot;Permutations: &quot; </span><span class="s1">+ permutations);</span>
+<a name="l15"><span class="ln">15   </span></a>    <span class="s1">}</span>
+<a name="l16"><span class="ln">16   </span></a>
+<a name="l17"><span class="ln">17   </span></a>    <span class="s0">private static void </span><span class="s1">permute(String s, </span><span class="s0">int </span><span class="s1">l, </span><span class="s0">int </span><span class="s1">r) {</span>
+<a name="l18"><span class="ln">18   </span></a>
+<a name="l19"><span class="ln">19   </span></a>        <span class="s2">// base condition</span>
+<a name="l20"><span class="ln">20   </span></a>        <span class="s0">if </span><span class="s1">(l == r) {</span>
+<a name="l21"><span class="ln">21   </span></a>            <span class="s1">permutations.add(s);</span>
+<a name="l22"><span class="ln">22   </span></a>            <span class="s0">return</span><span class="s1">;</span>
+<a name="l23"><span class="ln">23   </span></a>        <span class="s1">}</span>
+<a name="l24"><span class="ln">24   </span></a>
+<a name="l25"><span class="ln">25   </span></a>        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = l; i &lt; r; i++) {</span>
+<a name="l26"><span class="ln">26   </span></a>            <span class="s1">s = swap(s, l, i);</span>
+<a name="l27"><span class="ln">27   </span></a>            <span class="s1">permute(s, l + </span><span class="s4">1</span><span class="s1">, r);</span>
+<a name="l28"><span class="ln">28   </span></a>            <span class="s1">s = swap(s, l, i); </span><span class="s2">// backtracking</span>
+<a name="l29"><span class="ln">29   </span></a>        <span class="s1">}</span>
+<a name="l30"><span class="ln">30   </span></a>    <span class="s1">}</span>
+<a name="l31"><span class="ln">31   </span></a>
+<a name="l32"><span class="ln">32   </span></a>    <span class="s0">private static </span><span class="s1">String swap(String s, </span><span class="s0">int </span><span class="s1">l, </span><span class="s0">int </span><span class="s1">i) {</span>
+<a name="l33"><span class="ln">33   </span></a>
+<a name="l34"><span class="ln">34   </span></a>        <span class="s0">char</span><span class="s1">[] arr = s.toCharArray();</span>
+<a name="l35"><span class="ln">35   </span></a>        <span class="s0">char </span><span class="s1">temp = arr[l];</span>
+<a name="l36"><span class="ln">36   </span></a>        <span class="s1">arr[l] = arr[i];</span>
+<a name="l37"><span class="ln">37   </span></a>        <span class="s1">arr[i] = temp;</span>
+<a name="l38"><span class="ln">38   </span></a>
+<a name="l39"><span class="ln">39   </span></a>        <span class="s0">return new </span><span class="s1">String(arr);</span>
+<a name="l40"><span class="ln">40   </span></a>    <span class="s1">}</span>
+<a name="l41"><span class="ln">41   </span></a><span class="s1">}</span>
+<a name="l42"><span class="ln">42   </span></a></pre>
+</body>
+</html>

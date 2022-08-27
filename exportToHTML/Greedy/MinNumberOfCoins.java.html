@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>MinNumberOfCoins.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #5c6370; font-style: italic;}
+.s3 { color: #d19a66;}
+.s4 { color: #89ca78;}
+.ln { color: #495162; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MinNumberOfCoins.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">Greedy;</span>
+<a name="l2"><span class="ln">2    </span></a><span class="s0">import </span><span class="s1">java.util.LinkedList;</span>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">java.util.List;</span>
+<a name="l4"><span class="ln">4    </span></a>
+<a name="l5"><span class="ln">5    </span></a>
+<a name="l6"><span class="ln">6    </span></a><span class="s2">// greedy method.</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s2">// dosen't work for all denominations.</span>
+<a name="l8"><span class="ln">8    </span></a><span class="s2">// For example, it doesn’t work for denominations {9, 6, 5, 1} and V = 11. The above approach would print 9, 1 and 1. But we can use 2 denominations 5 and 6.</span>
+<a name="l9"><span class="ln">9    </span></a><span class="s2">// For example, if doesn't word for denominations {4, 10, 25} and V = 41. Greedy approach will give (-1 as no solution exist) but we can take {25, 4, 4, 4, 4} as answer.</span>
+<a name="l10"><span class="ln">10   </span></a>
+<a name="l11"><span class="ln">11   </span></a><span class="s0">public class </span><span class="s1">MinNumberOfCoins {</span>
+<a name="l12"><span class="ln">12   </span></a>    <span class="s2">// refer: https://www.geeksforgeeks.org/greedy-algorithm-to-find-minimum-number-of-coins/</span>
+<a name="l13"><span class="ln">13   </span></a>    <span class="s0">static int</span><span class="s1">[] denominations = {</span><span class="s3">1</span><span class="s1">, </span><span class="s3">2</span><span class="s1">, </span><span class="s3">5</span><span class="s1">, </span><span class="s3">10</span><span class="s1">, </span><span class="s3">20</span><span class="s1">, </span><span class="s3">50</span><span class="s1">, </span><span class="s3">500</span><span class="s1">, </span><span class="s3">1000</span><span class="s1">};</span>
+<a name="l14"><span class="ln">14   </span></a>    <span class="s0">static int </span><span class="s1">n = denominations.length;</span>
+<a name="l15"><span class="ln">15   </span></a>    <span class="s0">static </span><span class="s1">List&lt;Integer&gt; ans = </span><span class="s0">new </span><span class="s1">LinkedList&lt;&gt;();</span>
+<a name="l16"><span class="ln">16   </span></a>
+<a name="l17"><span class="ln">17   </span></a>    <span class="s0">static void </span><span class="s1">findMinCoin(</span><span class="s0">int </span><span class="s1">V) {</span>
+<a name="l18"><span class="ln">18   </span></a>
+<a name="l19"><span class="ln">19   </span></a>        <span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=n-</span><span class="s3">1</span><span class="s1">; i&gt;=</span><span class="s3">0</span><span class="s1">; i--) {</span>
+<a name="l20"><span class="ln">20   </span></a>
+<a name="l21"><span class="ln">21   </span></a>            <span class="s0">while</span><span class="s1">(V &gt;= denominations[i]) {</span>
+<a name="l22"><span class="ln">22   </span></a>                <span class="s1">V -= denominations[i];</span>
+<a name="l23"><span class="ln">23   </span></a>                <span class="s1">ans.add(denominations[i]);</span>
+<a name="l24"><span class="ln">24   </span></a>            <span class="s1">}</span>
+<a name="l25"><span class="ln">25   </span></a>        <span class="s1">}</span>
+<a name="l26"><span class="ln">26   </span></a>
+<a name="l27"><span class="ln">27   </span></a>        <span class="s1">System.out.println(ans);</span>
+<a name="l28"><span class="ln">28   </span></a>    <span class="s1">}</span>
+<a name="l29"><span class="ln">29   </span></a>    <span class="s0">public static void </span><span class="s1">main(String[] args) {     </span>
+<a name="l30"><span class="ln">30   </span></a>        <span class="s1">findMinCoin(</span><span class="s3">93</span><span class="s1">);</span>
+<a name="l31"><span class="ln">31   </span></a>        <span class="s1">System.out.println(</span><span class="s4">&quot;MinCoin: &quot; </span><span class="s1">+ ans);</span>
+<a name="l32"><span class="ln">32   </span></a>    <span class="s1">}</span>
+<a name="l33"><span class="ln">33   </span></a><span class="s1">}</span></pre>
+</body>
+</html>
