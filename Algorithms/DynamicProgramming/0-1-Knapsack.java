@@ -2,11 +2,169 @@ package DynamicProgramming;
 
 import java.util.Arrays;
 
+// refer: https://takeuforward.org/data-structure/0-1-knapsack-dp-19/
+
+class Recursion_Knapsack01 {
+    public static void main(String[] args) {
+        int n = 3;
+        int[] weights = {3, 2, 5};
+        int[] values = {40, 30, 50};
+        int W = 6;
+        System.out.println(solve(n-1,  W, weights, values));
+    }
+
+    private static int solve(int index, int W, int[] wt, int[] val) {
+
+        // base
+        if(index == 0) {
+            if(wt[0] <= W) return val[0]; // can take of 0th index
+            else return 0; // can't take 0th index as maxWeight limit exceeded
+        }
+
+        int notTake = 0 + solve(index-1, W, wt, val);
+        int take = Integer.MIN_VALUE; // as can only take if wt[index] <= W
+        if(wt[index] <= W)
+            take = val[index] + solve(index-1, W-wt[index], wt, val);
+
+        return Math.max(notTake, take);
+    }
+}
+
+class Memoization_Knapsack01 {
+    public static void main(String[] args) {
+        int n = 3;
+        int[] weights = {3, 2, 5};
+        int[] values = {40, 30, 50};
+        int W = 6;
+        int[][] dp = new int[n+1][W+1];
+
+        for(int[] a : dp)
+            Arrays.fill(a, -1);
+
+        System.out.println(solve(n-1,  W, weights, values, dp));
+    }
+
+    private static int solve(int index, int W, int[] wt, int[] val, int[][] dp) {
+
+        // base
+        if(index == 0) {
+            if(wt[0] <= W) return val[0]; // can take of 0th index
+            else return 0; // can't take 0th index as maxWeight limit exceeded
+        }
+        if(dp[index][W] != -1) return dp[index][W];
+
+        int notTake = 0 + solve(index-1, W, wt, val, dp);
+        int take = Integer.MIN_VALUE; // as can only take if wt[index] <= W
+        if(wt[index] <= W)
+            take = val[index] + solve(index-1, W-wt[index], wt, val, dp);
+
+        return dp[index][W] = Math.max(notTake, take);
+    }
+}
+
+class Tabulation_Knapsack01 {
+    public static void main(String[] args) {
+        int n = 3;
+        int[] weights = {3, 2, 5};
+        int[] values = {40, 30, 50};
+        int maxWeight = 6;
+        int[][] dp = new int[n+1][maxWeight+1];
+
+        System.out.println(solve(n, maxWeight, weights, values, dp));
+    }
+
+    private static int solve(int n, int maxWeight, int[] wt, int[] val, int[][] dp) {
+
+        // base
+        for(int W = wt[0]; W<=maxWeight; W++) dp[0][W] = val[0];
+
+        for(int index = 1; index<n; index++) {
+            for(int W = 0; W<= maxWeight; W++) {
+                int notTake = 0 + dp[index-1][W];
+                int take = Integer.MIN_VALUE; // as can only take if wt[index] <= W
+                if(wt[index] <= W)
+                    take = val[index] + dp[index-1][W-wt[index]];
+
+                dp[index][W] = Math.max(notTake, take);
+            }
+        }
+
+        return dp[n-1][maxWeight];
+    }
+}
+
+class Tabulation_Knapsack01_SpaceOptimized {
+    public static void main(String[] args) {
+        int n = 3;
+        int[] weights = {3, 2, 5};
+        int[] values = {40, 30, 50};
+        int maxWeight = 6;
+
+        System.out.println(solve(n, maxWeight, weights, values));
+    }
+
+    private static int solve(int n, int maxWeight, int[] wt, int[] val) {
+
+        // base
+        int[] prev = new int[maxWeight+1];
+        int[] cur = new int[maxWeight+1];
+
+        for(int W = wt[0]; W<=maxWeight; W++) prev[W] = val[0];
+
+        for(int index = 1; index<n; index++) {
+            for(int W = 0; W<= maxWeight; W++) { // for(int W = maxWeight; W>=0; W--) this also works
+                int notTake = 0 + prev[W];
+                int take = Integer.MIN_VALUE; // as can only take if wt[index] <= W
+                if(wt[index] <= W)
+                    take = val[index] + prev[W-wt[index]];
+
+                cur[W] = Math.max(notTake, take);
+            }
+
+            prev = cur;
+        }
+
+        return prev[maxWeight];
+    }
+}
+
+class Tabulation_Knapsack01_More_SpaceOptimized {
+    public static void main(String[] args) {
+        int n = 3;
+        int[] weights = {3, 2, 5};
+        int[] values = {40, 30, 50};
+        int maxWeight = 6;
+
+        System.out.println(solve(n, maxWeight, weights, values));
+    }
+
+    private static int solve(int n, int maxWeight, int[] wt, int[] val) {
+
+        // base
+        int[] prev = new int[maxWeight+1];
+
+        for(int W = wt[0]; W<=maxWeight; W++) prev[W] = val[0];
+
+        for(int index = 1; index<n; index++) {
+            for(int W = maxWeight; W>=0; W--) { // for(int W = maxWeight; W>=0; W--) this also works
+                int notTake = 0 + prev[W];
+                int take = Integer.MIN_VALUE; // as can only take if wt[index] <= W
+                if(wt[index] <= W)
+                    take = val[index] + prev[W-wt[index]];
+
+                prev[W] = Math.max(notTake, take);
+            }
+        }
+
+        return prev[maxWeight];
+    }
+}
+
 // refer: https://medium.com/@fabianterh/how-to-solve-the-knapsack-problem-with-dynamic-programming-eb88c706d3cf
 // refer: https://youtu.be/y6kpGJBI7t0
 
-class Knapsack {
-    public static void main(String args[]) {
+class Knapsack_Anuj {
+    public static void main(String[] args) {
         int w = 10;
         int n = 4;
         int[] val = {10, 40, 30, 50};
